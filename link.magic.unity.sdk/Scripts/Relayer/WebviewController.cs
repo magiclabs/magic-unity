@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using link.magic.unity.sdk.Provider;
 using UnityEngine;
 
 namespace link.magic.unity.sdk.Relayer
@@ -36,7 +37,7 @@ namespace link.magic.unity.sdk.Relayer
         /// <summary>
         /// Queue
         /// </summary>
-        internal void enqueue()
+        internal void enqueue(RelayerRequest request)
         {
             
         }

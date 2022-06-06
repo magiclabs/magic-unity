@@ -1,4 +1,7 @@
 using System;
+using JetBrains.Annotations;
+using link.magic.unity.sdk.Utility;
+using UnityEngine;
 
 namespace link.magic.unity.sdk.Relayer
 {
@@ -6,13 +9,41 @@ namespace link.magic.unity.sdk.Relayer
     public class UrlBuilder
     {
         public string apikey;
+        internal static UrlBuilder Instance;
         public static string Host = "https://box.magic.link";
+        internal string EncodedParams;
+
+        public UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
+        {
+            CustomNodeBaseOptions options = new CustomNodeBaseOptions();
+            options.ETH_NETWORK = customNode;
+            options.locale = locale;
+            options.API_KEY = apikey;
+            
+            _buildEncodeParams(this);
+        }
+        
+        public UrlBuilder(string apikey, EthNetworkConfiguration ethNetwork, string locale = "en-US")
+        {
+            EthNetworkBaseOptions options = new EthNetworkBaseOptions();
+            options.ETH_NETWORK = ethNetwork;
+            options.locale = locale;
+            options.API_KEY = apikey;
+
+            _buildEncodeParams(this);
+        }
+
+        private void _buildEncodeParams(UrlBuilder builder)
+        {
+            string optionsJsonString = JsonUtility.ToJson(builder);
+            EncodedParams = MagicUtility.Atob(optionsJsonString);
+        }
     }
     
     [Serializable]
     internal class EthNetworkBaseOptions: IBaseOptions
     {
-        private EthNetworkConfiguration ETH_NETWORK;
+        internal EthNetworkConfiguration ETH_NETWORK;
         public string API_KEY { get; set; }
         public string locale { get; set; }
     }
@@ -20,7 +51,7 @@ namespace link.magic.unity.sdk.Relayer
     [Serializable]
     internal class CustomNodeBaseOptions: IBaseOptions
     {
-        private CustomNodeConfiguration ETH_NETWORK;
+        internal CustomNodeConfiguration ETH_NETWORK;
         public string API_KEY { get; set; }
         public string locale { get; set; }
     }

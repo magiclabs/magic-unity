@@ -1,5 +1,6 @@
 using System;
 using link.magic.unity.sdk.Provider;
+using Nethereum.JsonRpc.Client;
 
 namespace link.magic.unity.sdk.Modules.Auth
 {
@@ -12,6 +13,7 @@ namespace link.magic.unity.sdk.Modules.Auth
 
         public async void loginWithMagicLink()
         {
+            // RpcRequestBuilder()
             
         }
     }
