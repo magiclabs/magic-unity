@@ -12,7 +12,7 @@ namespace link.magic.unity.sdk.Modules.Auth
 
         public async void loginWithMagicLink()
         {
-            // await this.Provider
+            
         }
     }
     
