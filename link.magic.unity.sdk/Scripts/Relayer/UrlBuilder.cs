@@ -10,7 +10,8 @@ namespace link.magic.unity.sdk.Relayer
     {
         public string apikey;
         internal static UrlBuilder Instance;
-        public static string Host = "https://box.magic.link";
+        // public static string Host = "https://box.magic.link";
+        public static string Host = "http://192.168.1.101:3016";
         internal string EncodedParams;
 
         public UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
@@ -76,7 +77,7 @@ namespace link.magic.unity.sdk.Relayer
 
         public EthNetworkConfiguration(EthNetwork network)
         {
-            this.network = network.ToString();
+            this.network = nameof(network);
         }
     }
 }

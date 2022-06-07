@@ -3,15 +3,15 @@ using System;
 namespace link.magic.unity.sdk.Provider
 {
     [Serializable]
-    public class RelayerRequest
+    internal class RelayerRequest<T>
     {
-        public string MsgType;
-        public MagicRpcRequest Payload;
+        public string msgType;
+        public MagicRpcRequest<T> payload;
 
-        RelayerRequest(string msgType, MagicRpcRequest payload)
+        internal RelayerRequest(string msgType, MagicRpcRequest<T> payload)
         {
-            MsgType = msgType;
-            Payload = payload;
+            this.msgType = msgType;
+            this.payload = payload;
         }
     }
 }

@@ -11,4 +11,9 @@ namespace link.magic.unity.sdk.Modules
             Provider = provider;
         }
     }
+
+    public class BaseConfiguration
+    {
+        
+    }
 }

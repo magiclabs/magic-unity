@@ -6,6 +6,9 @@
   "unity": "2021.3",
   "author": {
     "name": "Magic Labs Inc."
+  },
+  "dependencies": {
+    "webview-unity": "1.0.0"
   }
 }
 

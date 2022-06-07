@@ -1,10 +1,17 @@
+using System;
+
 namespace link.magic.unity.sdk.Provider
 {
-    public class RelayerResponse
+    [Serializable]
+    public class RelayerResponse<T>
     {
         public string msgType;
-        public MagicRpcResponse<T> Response;
+        public MagicRpcResponse<T> response;
         
-        
+        internal RelayerResponse(string msgType, MagicRpcResponse<T> response)
+        {
+            this.msgType = msgType;
+            this.response = response;
+        }
     }
 }

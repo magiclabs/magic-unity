@@ -7,7 +7,7 @@ using Nethereum.JsonRpc.Client;
 
 namespace link.magic.unity.sdk
 {
-    public class Magic
+    public sealed class Magic
     {
         public UserModule User;
         public AuthModule Auth;
