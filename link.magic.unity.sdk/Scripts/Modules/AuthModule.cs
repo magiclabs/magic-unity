@@ -15,11 +15,26 @@ namespace link.magic.unity.sdk.Modules.Auth
 
         public async Task<string> LoginWithMagicLink(string email, bool showUI = true)
         {
-            LoginWithMagicLinkConfiguration config = new LoginWithMagicLinkConfiguration(email, showUI);
-            LoginWithMagicLinkConfiguration[] paramList = { config };
-            MagicRpcRequest<LoginWithMagicLinkConfiguration> request = new MagicRpcRequest<LoginWithMagicLinkConfiguration>(method: nameof(AuthMethod.magic_auth_login_with_magic_link), parameters: paramList);
-            return await Provider.SendAsync<LoginWithMagicLinkConfiguration, string>(request);
+            var config = new LoginWithMagicLinkConfiguration(email, showUI);
+            return await SendToProviderWithConfig<LoginWithMagicLinkConfiguration, string>(config, nameof(AuthMethod.magic_auth_login_with_magic_link)
+                );
         }
+        
+        public async Task<string> LoginWithSms(string phoneNumber)
+        {
+            var config = new LoginWithSmsConfiguration(phoneNumber);
+            return await SendToProviderWithConfig<LoginWithSmsConfiguration, string>(config, nameof(AuthMethod.magic_auth_login_with_sms)
+            );
+        }
+        
+        public async Task<string> LoginWithEmailOtp(string email)
+        {
+            var config = new LoginWithEmailOtpConfiguration(email);
+            return await SendToProviderWithConfig<LoginWithEmailOtpConfiguration, string>(config,
+                nameof(AuthMethod.magic_auth_login_with_email_otp));
+
+        }
+
 
         [Serializable]
         internal class LoginWithMagicLinkConfiguration: BaseConfiguration
@@ -40,7 +55,7 @@ namespace link.magic.unity.sdk.Modules.Auth
             public bool showUI;
             public string phoneNumber;
 
-            public LoginWithSmsConfiguration(string phoneNumber, bool showUI = true )
+            public LoginWithSmsConfiguration(string phoneNumber)
             {
                 this.showUI = showUI;
                 this.phoneNumber = phoneNumber;

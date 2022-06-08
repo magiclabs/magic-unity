@@ -28,7 +28,7 @@ namespace link.magic.unity.sdk
                 User = new UserModule(Provider);
                 Auth = new AuthModule(Provider);
             }
-        }   
+    }   
     public enum EthNetwork
     {
         Mainnet,
