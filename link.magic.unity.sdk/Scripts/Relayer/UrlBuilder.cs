@@ -1,11 +1,11 @@
 using System;
 using JetBrains.Annotations;
+using link.magic.unity.sdk.Modules;
 using link.magic.unity.sdk.Utility;
 using UnityEngine;
 
 namespace link.magic.unity.sdk.Relayer
 {
-    [Serializable]
     public class UrlBuilder
     {
         public string apikey;
@@ -16,45 +16,37 @@ namespace link.magic.unity.sdk.Relayer
 
         public UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
         {
-            CustomNodeBaseOptions options = new CustomNodeBaseOptions();
+            CustomNodeOptions options = new CustomNodeOptions();
             options.ETH_NETWORK = customNode;
             options.locale = locale;
             options.API_KEY = apikey;
             
-            _buildEncodeParams(this);
+            string optionsJsonString = JsonUtility.ToJson(options);
+            EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
         
         public UrlBuilder(string apikey, EthNetworkConfiguration ethNetwork, string locale = "en-US")
         {
-            EthNetworkBaseOptions options = new EthNetworkBaseOptions();
+            EthNetworkOptions options = new EthNetworkOptions();
             options.ETH_NETWORK = ethNetwork;
             options.locale = locale;
             options.API_KEY = apikey;
 
-            _buildEncodeParams(this);
-        }
-
-        private void _buildEncodeParams(UrlBuilder builder)
-        {
-            string optionsJsonString = JsonUtility.ToJson(builder);
-            EncodedParams = MagicUtility.Atob(optionsJsonString);
+            string optionsJsonString = JsonUtility.ToJson(options);
+            EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
     }
     
     [Serializable]
-    internal class EthNetworkBaseOptions: IBaseOptions
+    internal class EthNetworkOptions: BaseOptions
     {
-        internal EthNetworkConfiguration ETH_NETWORK;
-        public string API_KEY { get; set; }
-        public string locale { get; set; }
+        public EthNetworkConfiguration ETH_NETWORK;
     }
 
     [Serializable]
-    internal class CustomNodeBaseOptions: IBaseOptions
+    internal class CustomNodeOptions: BaseOptions
     {
-        internal CustomNodeConfiguration ETH_NETWORK;
-        public string API_KEY { get; set; }
-        public string locale { get; set; }
+        public CustomNodeConfiguration ETH_NETWORK;
     }
     
     [Serializable]
@@ -80,6 +72,16 @@ namespace link.magic.unity.sdk.Relayer
             this.network = nameof(network);
         }
     }
+
+    [Serializable]
+    public class BaseOptions
+    {
+        public string host = UrlBuilder.Host;
+        public string sdk = "magic-sdk-unity";
+        public string API_KEY;
+        public string locale;
+    }
+    
 }
 
 

@@ -2,8 +2,6 @@ using System;
 using System.Threading.Tasks;
 using link.magic.unity.sdk.Relayer;
 using Nethereum.JsonRpc.Client;
-using Unity.Plastic.Newtonsoft.Json.Linq;
-using UnityEditor;
 using UnityEngine;
 namespace link.magic.unity.sdk.Provider
 
@@ -14,7 +12,7 @@ namespace link.magic.unity.sdk.Provider
 
         public RpcProvider(UrlBuilder urlBuilder)
         {
-            string url = _generateBoxUrl(urlBuilder);
+            var url = _generateBoxUrl(urlBuilder);
 
             // init relayer
             _relayer.Load(url);
@@ -23,20 +21,14 @@ namespace link.magic.unity.sdk.Provider
         private string _generateBoxUrl(UrlBuilder urlBuilder)
         {
             // encode options params to base 64
-            string optionsJsonString = JsonUtility.ToJson(urlBuilder);
+            var optionsJsonString = JsonUtility.ToJson(urlBuilder);
             Debug.Log(optionsJsonString);
  
-            string url = $"{UrlBuilder.Host}/send/?params={urlBuilder.EncodedParams}";
+            var url = $"{UrlBuilder.Host}/send/?params={urlBuilder.EncodedParams}";
             
             return url;
         }
-        
-        // a send function for Magic internal calls
-        // public async Task<T> MagicSendAsync<T>(MagicRpcRequest request)
-        // {
-        //     return SendAsync<T>(request);
-        // }
-        
+
         // overrides of Nethereum sendRequestAsync to redirect paylaods to our relayer
         // public override async Task InterceptSendRequestAsync(Func<string, string, object[], Task> interceptedSendRequestAsync, string method, string route = null,
         //     params object[] paramList)
@@ -48,16 +40,20 @@ namespace link.magic.unity.sdk.Provider
         public async Task<TResult> SendAsync<TParams, TResult>(MagicRpcRequest<TParams> magicRequest)
         {
             // Wrap with Relayer params and send to relayer
-            RelayerRequest<TParams> relayerRequest = new RelayerRequest<TParams>(nameof(OutboundMessageType.MAGIC_HANDLE_REQUEST), magicRequest);
-            string msgStr = JsonUtility.ToJson(relayerRequest);
+            var msgType = $"{nameof(OutboundMessageType.MAGIC_HANDLE_REQUEST)}-{UrlBuilder.Instance.EncodedParams}";
+            var relayerRequest = new RelayerRequest<TParams>(msgType, magicRequest);
+            var msgStr = JsonUtility.ToJson(relayerRequest);
 
             var promise = new TaskCompletionSource<TResult>();
 
             // handle Response in the callback, so that webview is type free
-            _relayer.Enqueue(msgStr, magicRequest.Id, (string responseStr) =>
+            _relayer.Enqueue(msgStr, magicRequest.id, msg =>
             {
-                TResult response = JsonUtility.FromJson<TResult>(responseStr);   
-                return promise.TrySetResult(response);
+                var relayerResponse = JsonUtility.FromJson<RelayerResponse<TResult>>(msg);
+
+                var result = relayerResponse.response.result;
+                
+                return promise.TrySetResult(result);
             });
 
             return await promise.Task;

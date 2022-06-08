@@ -1,24 +1,23 @@
 using System;
 using JetBrains.Annotations;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace link.magic.unity.sdk.Provider
 {
     [Serializable]
-    public class MagicRpcResponse<T>
+    internal class MagicRpcResponse<T>
     {
-        public int Id { get; private set; }
-
-        public string Jsonrpc { get; private set; }
-
-        [CanBeNull] public T Result { get; private set; }
-        
-        [CanBeNull] public Error Error { get; private set; }
+        [SerializeField] internal int id;
+        [SerializeField] internal string jsonrpc = "2.0";
+        [SerializeField] internal T result;
+        [SerializeField] internal Error error;
         
         public MagicRpcResponse(int id, string jsonrpc, T result)
         {
-            Id = id;
-            Jsonrpc = jsonrpc;
-            Result = result;
+            this.id = id;
+            this.jsonrpc = jsonrpc;
+            this.result = result;
         }
     }
 

@@ -1,5 +1,7 @@
 using System;
 using Org.BouncyCastle.Security;
+using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace link.magic.unity.sdk.Provider
@@ -7,20 +9,16 @@ namespace link.magic.unity.sdk.Provider
     [Serializable]
     public class MagicRpcRequest<T>
     {
-        public int Id { get; private set; }
-
-        public string Jsonrpc { get; private set; }
-
-        public string Method { get; private set; }
-        
-        public T[] Params { get; private set; }
+        [SerializeField] internal int id;
+        [SerializeField] internal string jsonrpc = "2.0";
+        [SerializeField] internal string method;
+        [SerializeField] internal T[] @params;
 
         public MagicRpcRequest(string method, T[] parameters)
         {
-            Id = Random.Range(1, 100000);
-            Jsonrpc = "2.0";
-            Method = method;
-            Params = parameters;
+            id = Random.Range(1, 100000);
+            this.method = method;
+            @params = parameters;
         }
     }
 }
