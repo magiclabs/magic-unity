@@ -1,7 +1,5 @@
 using System;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Transactions;
 using JetBrains.Annotations;
 using link.magic.unity.sdk.Provider;
 
@@ -36,12 +34,15 @@ namespace link.magic.unity.sdk.Modules.User
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_update_email));
         }
         
+        public async Task<bool> IsLoggedIn()
+        {
+            return await SendToProvider<bool>(nameof(UserMethod.magic_auth_is_logged_in));
+        }
+        
         public async Task<bool> Logout()
         {
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_logout));
         }
-        
-  
     }
     
     /// <summary>

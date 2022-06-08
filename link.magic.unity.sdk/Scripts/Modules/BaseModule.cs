@@ -1,7 +1,5 @@
-using System;
 using System.Threading.Tasks;
 using link.magic.unity.sdk.Provider;
-using MergetoolGui;
 
 namespace link.magic.unity.sdk.Modules
 {
