@@ -21,9 +21,10 @@ namespace link.magic.unity.sdk.Modules
 
         internal async Task<TResult> SendToProvider<TResult>(string methodName)
         {
-            object[] paramList = { };
-            var request = new MagicRpcRequest<object>(methodName, paramList);
-            return await Provider.MagicSendAsync<object, TResult>(request);
+            // Don't use object, otherwise list will not be serialized
+            int[] paramList = { };
+            var request = new MagicRpcRequest<int>(methodName, paramList);
+            return await Provider.MagicSendAsync<int, TResult>(request);
         }
     }
 
