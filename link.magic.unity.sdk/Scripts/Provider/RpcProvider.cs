@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using link.magic.unity.sdk.Relayer;
@@ -7,15 +6,17 @@ using Nethereum.JsonRpc.Client;
 using Nethereum.JsonRpc.Client.RpcMessages;
 using Newtonsoft.Json;
 using UnityEngine;
+
 namespace link.magic.unity.sdk.Provider
 
 {
-    public class RpcProvider: ClientBase
+    public class RpcProvider : ClientBase
     {
-        private WebviewController _relayer = new ();
-        
         // Nethereum
-        private readonly JsonSerializerSettings _jsonSerializerSettings = DefaultJsonSerializerSettingsFactory.BuildDefaultJsonSerializerSettings();
+        private readonly JsonSerializerSettings _jsonSerializerSettings =
+            DefaultJsonSerializerSettingsFactory.BuildDefaultJsonSerializerSettings();
+
+        private readonly WebviewController _relayer = new();
 
         protected internal RpcProvider(UrlBuilder urlBuilder)
         {
@@ -30,9 +31,9 @@ namespace link.magic.unity.sdk.Provider
             // encode options params to base 64
             var optionsJsonString = JsonUtility.ToJson(urlBuilder);
             Debug.Log(optionsJsonString);
- 
+
             var url = $"{UrlBuilder.Host}/send/?params={urlBuilder.EncodedParams}";
-            
+
             return url;
         }
 
@@ -43,17 +44,15 @@ namespace link.magic.unity.sdk.Provider
             var relayerRequest = new RelayerRequestNethereum(msgType, request);
             var requestMsg = JsonConvert.SerializeObject(relayerRequest, _jsonSerializerSettings);
             Debug.Log($" MagicUnity 1{requestMsg}");
-            
+
             var promise = new TaskCompletionSource<RpcResponseMessage>();
 
             // handle Response in the callback, so that webview is type free
             _relayer.Enqueue(requestMsg, (int)request.Id, responseMsg =>
             {
-                Debug.Log($" Magic here0, {responseMsg}");
-                JsonTextReader reader = new JsonTextReader(new StringReader(responseMsg));
+                var reader = new JsonTextReader(new StringReader(responseMsg));
                 var serializer = JsonSerializer.Create(_jsonSerializerSettings);
-                var relayerResponseNethereum =  serializer.Deserialize<RelayerResponseNethereum>(reader);
-                Debug.Log($" Magic here3, {relayerResponseNethereum?.MsgType}");
+                var relayerResponseNethereum = serializer.Deserialize<RelayerResponseNethereum>(reader);
                 var result = relayerResponseNethereum?.Response;
                 return promise.TrySetResult(result);
             });
@@ -61,7 +60,7 @@ namespace link.magic.unity.sdk.Provider
             return await promise.Task;
         }
 
-        
+
         protected internal async Task<TResult> MagicSendAsync<TParams, TResult>(MagicRpcRequest<TParams> magicRequest)
         {
             // Wrap with Relayer params and send to relayer
@@ -77,13 +76,11 @@ namespace link.magic.unity.sdk.Provider
                 var relayerResponse = JsonUtility.FromJson<RelayerResponse<TResult>>(msg);
 
                 var error = relayerResponse.response.error;
-                if (error != null & error?.message != null)
-                {
+                if ((error != null) & (error?.message != null))
                     return promise.TrySetException(new Exception(error.message));
-                }
-                
+
                 var result = relayerResponse.response.result;
-                
+
                 return promise.TrySetResult(result);
             });
 

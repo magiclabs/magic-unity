@@ -7,26 +7,26 @@ namespace link.magic.unity.sdk
 {
     public sealed class Magic
     {
-        public readonly UserModule User;
+        // static instance
+        public static Magic Instance;
         public readonly AuthModule Auth;
-            
-            // static instance
-            public static Magic Instance;
 
-            public readonly RpcProvider Provider;
+        public readonly RpcProvider Provider;
+        public readonly UserModule User;
 
-            //Constructor
-            public Magic(string apikey)
-            {
-                EthNetworkConfiguration config = new EthNetworkConfiguration(EthNetwork.Mainnet);
-                UrlBuilder urlBuilder = new UrlBuilder(apikey: apikey, ethNetwork: config);
-                UrlBuilder.Instance = urlBuilder;
-                
-                Provider = new RpcProvider(urlBuilder);
-                User = new UserModule(Provider);
-                Auth = new AuthModule(Provider);
-            }
-    }   
+        //Constructor
+        public Magic(string apikey)
+        {
+            var config = new EthNetworkConfiguration(EthNetwork.Mainnet);
+            var urlBuilder = new UrlBuilder(apikey, config);
+            UrlBuilder.Instance = urlBuilder;
+
+            Provider = new RpcProvider(urlBuilder);
+            User = new UserModule(Provider);
+            Auth = new AuthModule(Provider);
+        }
+    }
+
     public enum EthNetwork
     {
         Mainnet,

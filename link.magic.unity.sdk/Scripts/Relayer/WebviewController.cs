@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using link.magic.unity.sdk.Provider;
 using UnityEngine;
 
@@ -10,20 +8,22 @@ namespace link.magic.unity.sdk.Relayer
     public class WebviewController
     {
         private readonly WebViewObject _webViewObject;
-        private bool _relayerReady;
-        private bool _relayerLoaded;
+        private readonly Dictionary<int, Func<string, bool>> _messageHandlers = new();
 
-        private Queue<string> _queue = new ();
-        private Dictionary<int, Func<string, bool>> _messageHandlers = new ();
+        private readonly Queue<string> _queue = new();
+        private bool _relayerLoaded;
+        private bool _relayerReady;
+
         public WebviewController()
         {
             // instantiate webview 
-            _webViewObject = (new GameObject("WebViewObject")).AddComponent<WebViewObject>();
+            _webViewObject = new GameObject("WebViewObject").AddComponent<WebViewObject>();
             _webViewObject.Init(
-                cb: _cb,
+                _cb,
                 ld: _onLoad
             );
         }
+
         internal void Load(string url)
         {
             _webViewObject.LoadURL(url);
@@ -34,16 +34,17 @@ namespace link.magic.unity.sdk.Relayer
         {
             _relayerLoaded = true;
         }
-        
+
         // callback js hooks
         private void _cb(string msg)
         {
+            // Debug.Log($"MagicUnity Received Message from Relayer: {msg}");
             // Do Simple Relayer JSON Deserialization just to fetch ids for handlers
-            RelayerResponse<object> res = JsonUtility.FromJson<RelayerResponse<object>>(msg);
-            string msgType = res.msgType;
+            var res = JsonUtility.FromJson<RelayerResponse<object>>(msg);
+            var msgType = res.msgType;
 
             var method = msgType.Split("-")[0];
-            
+
             switch (method)
             {
                 case nameof(InboundMessageType.MAGIC_OVERLAY_READY):
@@ -62,14 +63,11 @@ namespace link.magic.unity.sdk.Relayer
                 case nameof(InboundMessageType.MAGIC_HANDLE_RESPONSE):
                     _handleResponse(msg, res);
                     break;
-                default:
-                    //Todo add error
-                    break;
             }
         }
 
         /// <summary>
-        /// Queue
+        ///     Queue
         /// </summary>
         internal void Enqueue(string message, int id, Func<string, bool> callback)
         {
@@ -80,11 +78,15 @@ namespace link.magic.unity.sdk.Relayer
 
         private void _dequeue()
         {
-            if (_queue.Count != 0 && _relayerReady && _relayerLoaded) {
-                string message = _queue.Dequeue();
+            if (_queue.Count != 0 && _relayerReady && _relayerLoaded)
+            {
+                var message = _queue.Dequeue();
 
-                _webViewObject.EvaluateJS($"window.dispatchEvent(new MessageEvent('message', {{ 'data': {message} }}));");
-                
+                Debug.Log($"MagicUnity Send Message to Relayer: {message}");
+
+                _webViewObject.EvaluateJS(
+                    $"window.dispatchEvent(new MessageEvent('message', {{ 'data': {message} }}));");
+
                 _dequeue();
             }
         }

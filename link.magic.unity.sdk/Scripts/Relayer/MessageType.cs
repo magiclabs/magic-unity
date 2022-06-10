@@ -2,9 +2,9 @@ namespace link.magic.unity.sdk.Relayer
 {
     public enum OutboundMessageType
     {
-        MAGIC_HANDLE_REQUEST,
-
+        MAGIC_HANDLE_REQUEST
     }
+
     public enum InboundMessageType
     {
         MAGIC_HANDLE_RESPONSE,

@@ -11,47 +11,50 @@ namespace link.magic.unity.sdk.Modules.User
         {
             Provider = provider;
         }
-        
+
         public async Task<string> GetIdToken(int lifespan = 900)
         {
             var config = new GetIdTokenConfiguration(lifespan);
-            return await SendToProviderWithConfig<GetIdTokenConfiguration, string>(config, nameof(UserMethod.magic_auth_get_id_token));
+            return await SendToProviderWithConfig<GetIdTokenConfiguration, string>(config,
+                nameof(UserMethod.magic_auth_get_id_token));
         }
-        
+
         public async Task<string> GenerateIdToken(int lifespan = 900, string attachment = "none")
         {
             var config = new GenerateIdTokenConfiguration(lifespan, attachment);
-            return await SendToProviderWithConfig<GenerateIdTokenConfiguration, string>(config, nameof(UserMethod.magic_auth_generate_id_token));
+            return await SendToProviderWithConfig<GenerateIdTokenConfiguration, string>(config,
+                nameof(UserMethod.magic_auth_generate_id_token));
         }
-        
+
         public async Task<UserMetadata> GetMetadata()
         {
             return await SendToProvider<UserMetadata>(nameof(UserMethod.magic_auth_get_metadata));
         }
-        
+
         public async Task<bool> UpdateEmail()
         {
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_update_email));
         }
-        
+
         public async Task<bool> IsLoggedIn()
         {
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_is_logged_in));
         }
-        
+
         public async Task<bool> Logout()
         {
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_logout));
         }
     }
-    
+
     /// <summary>
-    /// User Configuration
+    ///     User Configuration
     /// </summary>
     [Serializable]
     internal class GetIdTokenConfiguration : BaseConfiguration
     {
         public int lifespan;
+
         internal GetIdTokenConfiguration(int lifespan)
         {
             this.lifespan = lifespan;
@@ -70,7 +73,7 @@ namespace link.magic.unity.sdk.Modules.User
             this.lifespan = lifespan;
         }
     }
-    
+
     [Serializable]
     internal class UpdateEmailConfiguration : BaseConfiguration
     {
@@ -84,7 +87,7 @@ namespace link.magic.unity.sdk.Modules.User
         }
     }
 
-    enum UserMethod
+    internal enum UserMethod
     {
         magic_auth_get_id_token,
         magic_auth_generate_id_token,
@@ -101,6 +104,4 @@ namespace link.magic.unity.sdk.Modules.User
         [CanBeNull] public string publicAddress;
         [CanBeNull] public string email;
     }
-    
-    
 }

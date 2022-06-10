@@ -1,7 +1,5 @@
 using System;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace link.magic.unity.sdk.Provider
 {
@@ -12,7 +10,7 @@ namespace link.magic.unity.sdk.Provider
         [SerializeField] internal string jsonrpc = "2.0";
         [SerializeField] internal T result;
         [SerializeField] internal Error error;
-        
+
         public MagicRpcResponse(int id, string jsonrpc, T result)
         {
             this.id = id;

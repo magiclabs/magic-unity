@@ -6,52 +6,54 @@ namespace link.magic.unity.sdk.Relayer
 {
     public class UrlBuilder
     {
-        public string apikey;
         internal static UrlBuilder Instance;
+
         public static readonly string Host = "https://box.magic.link";
+
         // public static readonly string Host = "http://192.168.1.18:3016";
         internal readonly string EncodedParams;
+        public string apikey;
 
         public UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
         {
-            CustomNodeOptions options = new CustomNodeOptions();
+            var options = new CustomNodeOptions();
             options.ETH_NETWORK = customNode;
             options.locale = locale;
             options.API_KEY = apikey;
-            
-            string optionsJsonString = JsonUtility.ToJson(options);
+
+            var optionsJsonString = JsonUtility.ToJson(options);
             EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
-        
+
         public UrlBuilder(string apikey, EthNetworkConfiguration ethNetwork, string locale = "en-US")
         {
-            EthNetworkOptions options = new EthNetworkOptions();
+            var options = new EthNetworkOptions();
             options.ETH_NETWORK = ethNetwork;
             options.locale = locale;
             options.API_KEY = apikey;
 
-            string optionsJsonString = JsonUtility.ToJson(options);
+            var optionsJsonString = JsonUtility.ToJson(options);
             EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
     }
-    
+
     [Serializable]
-    internal class EthNetworkOptions: BaseOptions
+    internal class EthNetworkOptions : BaseOptions
     {
         public EthNetworkConfiguration ETH_NETWORK;
     }
 
     [Serializable]
-    internal class CustomNodeOptions: BaseOptions
+    internal class CustomNodeOptions : BaseOptions
     {
         public CustomNodeConfiguration ETH_NETWORK;
     }
-    
+
     [Serializable]
     public class CustomNodeConfiguration
     {
-        string rpcUrl;
-        int chainId;
+        private int chainId;
+        private string rpcUrl;
 
         public CustomNodeConfiguration(string rpcUrl, int chainId)
         {
@@ -59,11 +61,11 @@ namespace link.magic.unity.sdk.Relayer
             this.chainId = chainId;
         }
     }
-    
+
     [Serializable]
     public class EthNetworkConfiguration
     {
-        string network;
+        private string network;
 
         public EthNetworkConfiguration(EthNetwork network)
         {
@@ -79,8 +81,4 @@ namespace link.magic.unity.sdk.Relayer
         public string API_KEY;
         public string locale;
     }
-    
 }
-
-
-
