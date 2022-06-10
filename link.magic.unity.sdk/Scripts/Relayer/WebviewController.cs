@@ -38,8 +38,6 @@ namespace link.magic.unity.sdk.Relayer
         // callback js hooks
         private void _cb(string msg)
         {
-            Debug.Log(string.Format("MagicUnity CallFromJS:{0}", msg));
-
             // Do Simple Relayer JSON Deserialization just to fetch ids for handlers
             RelayerResponse<object> res = JsonUtility.FromJson<RelayerResponse<object>>(msg);
             string msgType = res.msgType;
@@ -84,7 +82,7 @@ namespace link.magic.unity.sdk.Relayer
         {
             if (_queue.Count != 0 && _relayerReady && _relayerLoaded) {
                 string message = _queue.Dequeue();
-                
+
                 _webViewObject.EvaluateJS($"window.dispatchEvent(new MessageEvent('message', {{ 'data': {message} }}));");
                 
                 _dequeue();
@@ -96,6 +94,7 @@ namespace link.magic.unity.sdk.Relayer
             var payloadId = relayerResponse.response.id;
             var handler = _messageHandlers[payloadId];
             handler(originalMsg);
+            _messageHandlers.Remove(payloadId);
         }
     }
 }

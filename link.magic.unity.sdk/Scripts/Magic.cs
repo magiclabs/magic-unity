@@ -2,20 +2,18 @@ using link.magic.unity.sdk.Modules.Auth;
 using link.magic.unity.sdk.Modules.User;
 using link.magic.unity.sdk.Provider;
 using link.magic.unity.sdk.Relayer;
-using link.magic.unity.sdk.Utility;
-using Nethereum.JsonRpc.Client;
 
 namespace link.magic.unity.sdk
 {
     public sealed class Magic
     {
-        public UserModule User;
-        public AuthModule Auth;
+        public readonly UserModule User;
+        public readonly AuthModule Auth;
             
             // static instance
             public static Magic Instance;
 
-            public RpcProvider Provider;
+            public readonly RpcProvider Provider;
 
             //Constructor
             public Magic(string apikey)

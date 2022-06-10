@@ -16,14 +16,14 @@ namespace link.magic.unity.sdk.Modules
         {
             TConfig[] paramList = { config };
             var request = new MagicRpcRequest<TConfig>(method: methodName, parameters: paramList);
-            return await Provider.SendAsync<TConfig, TResult>(request);
+            return await Provider.MagicSendAsync<TConfig, TResult>(request);
         }
         
         internal async Task<TResult> SendToProvider<TResult>(string methodName)
         {
             object[] paramList = { };
             var request = new MagicRpcRequest<object>(method: methodName, parameters: paramList);
-            return await Provider.SendAsync<object, TResult>(request);
+            return await Provider.MagicSendAsync<object, TResult>(request);
         }
     }
 
