@@ -19,8 +19,18 @@ namespace link.magic.unity.sdk.Relayer
             // instantiate webview 
             _webViewObject = new GameObject("WebViewObject").AddComponent<WebViewObject>();
             _webViewObject.Init(
-                _cb,
-                ld: _onLoad
+                cb: _cb,
+                ld: (msg) => {
+                    _relayerLoaded = true;
+                },
+                httpErr: (msg) =>
+                {
+                    Debug.Log(string.Format("MagicUnity, LoadRelayerHttpError[{0}]", msg));
+                },
+                err: (msg) =>
+                {
+                    Debug.Log(string.Format("MagicUnity, LoadRelayerError[{0}]", msg));
+                }
             );
         }
 
@@ -28,12 +38,7 @@ namespace link.magic.unity.sdk.Relayer
         {
             _webViewObject.LoadURL(url);
         }
-
-        // onLoad hooks 
-        private void _onLoad(string msg)
-        {
-            _relayerLoaded = true;
-        }
+        
 
         // callback js hooks
         private void _cb(string msg)
