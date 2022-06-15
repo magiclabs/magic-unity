@@ -144,7 +144,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580916916030392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b2bd4e958214452bd0ed31b68620cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3225f34b5b46caac67e4437b044459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 4725580917594890847}
   - component: {fileID: 4725580917594890844}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580917684170674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5be66b468fd4fafa9eceb8cb63ba20, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d21156c00c44a2d820de0b64da42122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -649,8 +649,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4725580917594890845}
-  - {fileID: 4725580918763800006}
   - {fileID: 4725580918217971241}
+  - {fileID: 4725580918763800006}
   - {fileID: 4725580917684170677}
   - {fileID: 4725580918816804046}
   - {fileID: 4725580918694439949}
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580917693733633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a085b313e784043a2b558bc24812c9be, type: 3}
+  m_Script: {fileID: 11500000, guid: d5e375fe2b8c4c97acf50f75b460b71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4725580917882203101
@@ -932,7 +932,7 @@ RectTransform:
   m_Children:
   - {fileID: 4725580917484298539}
   m_Father: {fileID: 4725580917693733637}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1042,7 +1042,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580918217971238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5be66b468fd4fafa9eceb8cb63ba20, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d21156c00c44a2d820de0b64da42122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580918574931435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b2bd4e958214452bd0ed31b68620cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3225f34b5b46caac67e4437b044459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -1366,7 +1366,7 @@ GameObject:
   - component: {fileID: 4725580918694440177}
   - component: {fileID: 4725580918694439950}
   - component: {fileID: 4725580918694439951}
-  - component: {fileID: 4725580918694439948}
+  - component: {fileID: 730489410814357464}
   m_Layer: 5
   m_Name: SendTransaction Button
   m_TagString: Untagged
@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4725580918694439948}
+      - m_Target: {fileID: 730489410814357464}
         m_TargetAssemblyTypeName: EthereumButton, Assembly-CSharp
         m_MethodName: SendTransaction
         m_Mode: 1
@@ -1489,7 +1489,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4725580918694439948
+--- !u!114 &730489410814357464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580918694439946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93b2bd4e958214452bd0ed31b68620cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3225f34b5b46caac67e4437b044459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -1536,11 +1536,11 @@ RectTransform:
   m_Children:
   - {fileID: 4725580917146779456}
   m_Father: {fileID: 4725580917693733637}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.6376038, y: 32.12181}
+  m_AnchoredPosition: {x: 2.6375833, y: 32.12181}
   m_SizeDelta: {x: 674.561, y: 158.8924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4725580918763800010
@@ -1627,7 +1627,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4725580918763800009}
         m_TargetAssemblyTypeName: MagicUnityButton, Assembly-CSharp
-        m_MethodName: Login
+        m_MethodName: GetMetadata
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1646,7 +1646,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4725580918763800007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb5be66b468fd4fafa9eceb8cb63ba20, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d21156c00c44a2d820de0b64da42122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 4725580918687947633}
@@ -1662,7 +1662,7 @@ GameObject:
   - component: {fileID: 4725580918816804016}
   - component: {fileID: 4725580918816804017}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: EthTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
