@@ -56,7 +56,6 @@ namespace link.magic.unity.sdk.Modules.Auth
 
             public LoginWithSmsConfiguration(string phoneNumber)
             {
-                showUI = showUI;
                 this.phoneNumber = phoneNumber;
             }
         }

@@ -51,8 +51,8 @@ namespace link.magic.unity.sdk.Relayer
     [Serializable]
     public class CustomNodeConfiguration
     {
-        private int chainId;
-        private string rpcUrl;
+        [SerializeField] internal int chainId;
+        [SerializeField] internal string rpcUrl;
 
         public CustomNodeConfiguration(string rpcUrl, int chainId)
         {
@@ -64,7 +64,7 @@ namespace link.magic.unity.sdk.Relayer
     [Serializable]
     public class EthNetworkConfiguration
     {
-        private string network;
+        [SerializeField] internal string network;
 
         public EthNetworkConfiguration(EthNetwork network)
         {
