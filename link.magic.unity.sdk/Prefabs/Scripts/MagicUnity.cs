@@ -10,7 +10,7 @@ public class MagicUnity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Magic magic = new Magic("pk_live_78EABCE90112A046");
+        Magic magic = new Magic("YOUR_PUBLISHABLE_KEY");
         Magic.Instance = magic;
     }
 
