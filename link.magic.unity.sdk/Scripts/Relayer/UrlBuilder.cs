@@ -9,12 +9,11 @@ namespace link.magic.unity.sdk.Relayer
         internal static UrlBuilder Instance;
 
         public static readonly string Host = "https://box.magic.link";
-
-        // public static readonly string Host = "http://192.168.1.18:3016";
+        
         internal readonly string EncodedParams;
         public string apikey;
 
-        public UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
+        internal UrlBuilder(string apikey, CustomNodeConfiguration customNode, string locale = "en-US")
         {
             var options = new CustomNodeOptions();
             options.ETH_NETWORK = customNode;
@@ -25,7 +24,7 @@ namespace link.magic.unity.sdk.Relayer
             EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
 
-        public UrlBuilder(string apikey, EthNetworkConfiguration ethNetwork, string locale = "en-US")
+        internal UrlBuilder(string apikey, EthNetworkConfiguration ethNetwork, string locale)
         {
             var options = new EthNetworkOptions();
             options.ETH_NETWORK = ethNetwork;
