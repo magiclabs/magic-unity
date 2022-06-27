@@ -1,6 +1,8 @@
 # magic-unity
 
-Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations.
+Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations. 
+
+[Documentation](https://magic.link/docs/login-methods/email/integration/unity)
 
 ## Installation
 
@@ -57,6 +59,11 @@ and their github repo about [RPC payloads](https://github.com/Nethereum/Nethereu
             { To = accounts[0], Value = new HexBigInteger(10), From = accounts[0]};
         var hash = await transaction.SendRequestAsync(transactionInput);
 ```
+
+### DLL not loaded Error
+![image](https://user-images.githubusercontent.com/33166884/175986685-6423ffd8-51e2-4251-833b-bdf78fa35fa9.png)
+
+If you find this after loading the package. Please refer to the solution here in our [doc](https://magic.link/docs/login-methods/email/integration/unity#newton-json-version-error) for the incompatible version error
 
 ### Support
 More blockchain support will be coming soon. Feel free to send your requests and issues to `support@magic.link` or via our helpdesk. Happy coding!
