@@ -19,7 +19,7 @@ namespace link.magic.unity.sdk.Relayer
             options.ETH_NETWORK = customNode;
             options.locale = locale;
             options.API_KEY = apikey;
-
+            options.bundleId = Application.identifier;
             var optionsJsonString = JsonUtility.ToJson(options);
             EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
@@ -30,7 +30,7 @@ namespace link.magic.unity.sdk.Relayer
             options.ETH_NETWORK = ethNetwork;
             options.locale = locale;
             options.API_KEY = apikey;
-
+            options.bundleId = Application.identifier;
             var optionsJsonString = JsonUtility.ToJson(options);
             EncodedParams = MagicUtility.BtoA(optionsJsonString);
         }
@@ -79,5 +79,6 @@ namespace link.magic.unity.sdk.Relayer
         public string sdk = "magic-sdk-unity";
         public string API_KEY;
         public string locale;
+        public string bundleId;
     }
 }
