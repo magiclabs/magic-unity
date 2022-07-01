@@ -17,10 +17,9 @@ namespace link.magic.unity.sdk
         //Constructor
         public Magic(string apikey, EthNetwork network = EthNetwork.Mainnet, string locale = "en-US")
         {
-            var config = new EthNetworkConfiguration(network);
-            var urlBuilder = new UrlBuilder(apikey, config, locale);
+            var urlBuilder = new UrlBuilder(apikey, network, locale);
             UrlBuilder.Instance = urlBuilder;
-
+            
             Provider = new RpcProvider(urlBuilder);
             User = new UserModule(Provider);
             Auth = new AuthModule(Provider);

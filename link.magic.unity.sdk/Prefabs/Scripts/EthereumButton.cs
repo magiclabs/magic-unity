@@ -5,6 +5,7 @@ using System.Numerics;
 using link.magic.unity.sdk;
 using link.magic.unity.sdk.Provider;
 using Nethereum.Hex.HexTypes;
+using Nethereum.RPC;
 using Nethereum.RPC.Eth;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.RPC.Eth.Transactions;
@@ -63,5 +64,20 @@ public class EthereumButton : MonoBehaviour
         var transactionInput = new TransactionInput{Data = "Hello world"};
         var res = await personalSign.SendRequestAsync(accounts[0], "hello world");
         result.text = res;
+    }
+
+    public async void GetBalance()
+    {
+        var ethApiService = new EthApiService(Magic.Instance.Provider);
+        var accounts = await ethApiService.Accounts.SendRequestAsync();
+        var balance = await ethApiService.GetBalance.SendRequestAsync(accounts[0]);
+        result.text = balance.ToString();
+    }
+    
+    public async void GetChainId()
+    {
+        var ethApiService = new EthApiService(Magic.Instance.Provider);
+        var chainId = await ethApiService.ChainId.SendRequestAsync();
+        result.text = chainId.ToString();
     }
 }
