@@ -44,11 +44,11 @@ Magic Unity builds on top of Nethereum to enable web3 functionalities. For more 
 and their github repo about [RPC payloads](https://github.com/Nethereum/Nethereum/tree/f0f7cbd225fadfce681faff004a57e480428e62b/src/Nethereum.RPC)
 
 ```c#
-        // Get Eth Account  
-         var ethAccounts = new EthAccounts(Magic.Instance.Provider);
-        var accounts = await ethAccounts.SendRequestAsync();
+        // Get Eth Account using Web3() 
+        var web3 = new Web3(Magic.Instance.Provider);
+        var accounts = await web3.Eth.Accounts.SendRequestAsync();
          
-         // Eth sign
+        // Eth sign using Eth Namespace
         var personalSign = new EthSign(Magic.Instance.Provider);
         var transactionInput = new TransactionInput{Data = "Hello world"};
         var res = await personalSign.SendRequestAsync(accounts[0], "hello world");
