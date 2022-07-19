@@ -4,6 +4,11 @@ Magic empowers developers to protect their users via an innovative, passwordless
 
 [Documentation](https://magic.link/docs/login-methods/email/integration/unity)
 
+## Supported Platform
+It's recommended to apply this plugin in Unity 2021.3.3f1 or newer. Developers may build 2d Unity mobile Apps both in iOS and Android. 
+
+WebGL is currently not supported, but you may use [magic-js](https://github.com/magiclabs/magic-js) in a JS context to enable passwordless authentication flow.
+
 ## Installation
 
 Install the package by double clicking the `MagicUnity.unitypackage`, or drag it into your project
