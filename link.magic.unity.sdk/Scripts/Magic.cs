@@ -39,8 +39,6 @@ namespace link.magic.unity.sdk
     public enum EthNetwork
     {
         Mainnet,
-        Kovan,
-        Rinkeby,
-        Rposten
+        Goerli,
     }
 }
