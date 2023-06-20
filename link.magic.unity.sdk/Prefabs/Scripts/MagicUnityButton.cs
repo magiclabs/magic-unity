@@ -22,7 +22,7 @@ public class MagicUnityButton : MonoBehaviour
     public async void Login()
     {
         Magic magic = Magic.Instance;
-        var token = await magic.Auth.LoginWithMagicLink("jerry+unity@magic.link");
+        var token = await magic.Auth.LoginWithEmailOtp("hiro@magic.link");
         result.text = $"token {token}";
     }
     

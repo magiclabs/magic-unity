@@ -11,14 +11,6 @@ namespace link.magic.unity.sdk.Modules.Auth
             Provider = provider;
         }
 
-        public async Task<string> LoginWithMagicLink(string email, bool showUI = true)
-        {
-            var config = new LoginWithMagicLinkConfiguration(email, showUI);
-            return await SendToProviderWithConfig<LoginWithMagicLinkConfiguration, string>(config,
-                nameof(AuthMethod.magic_auth_login_with_magic_link)
-            );
-        }
-
         public async Task<string> LoginWithSms(string phoneNumber)
         {
             var config = new LoginWithSmsConfiguration(phoneNumber);
@@ -34,19 +26,6 @@ namespace link.magic.unity.sdk.Modules.Auth
                 nameof(AuthMethod.magic_auth_login_with_email_otp));
         }
 
-
-        [Serializable]
-        internal class LoginWithMagicLinkConfiguration : BaseConfiguration
-        {
-            public bool showUI;
-            public string email;
-
-            public LoginWithMagicLinkConfiguration(string email, bool showUI = true)
-            {
-                this.showUI = showUI;
-                this.email = email;
-            }
-        }
 
         [Serializable]
         internal class LoginWithSmsConfiguration : BaseConfiguration
@@ -74,7 +53,6 @@ namespace link.magic.unity.sdk.Modules.Auth
 
     internal enum AuthMethod
     {
-        magic_auth_login_with_magic_link,
         magic_auth_login_with_sms,
         magic_auth_login_with_email_otp
     }
