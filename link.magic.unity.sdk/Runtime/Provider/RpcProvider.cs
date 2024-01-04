@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using link.magic.unity.sdk.Relayer;
@@ -60,6 +61,21 @@ namespace link.magic.unity.sdk.Provider
             return await promise.Task;
         }
 
+        protected override async Task<RpcResponseMessage[]> SendAsync(RpcRequestMessage[] requestList)
+        {
+            var promise = new TaskCompletionSource<RpcResponseMessage[]>();
+            var results = new List<RpcResponseMessage>();
+            foreach (var rpcRequestMessage in requestList)
+            {
+                var res = await SendAsync(rpcRequestMessage);
+                results.Add(res);
+            }
+            
+            promise.TrySetResult(results.ToArray());
+
+            return await promise.Task;
+        }
+
 
         protected internal async Task<TResult> MagicSendAsync<TParams, TResult>(MagicRpcRequest<TParams> magicRequest)
         {
@@ -86,5 +102,6 @@ namespace link.magic.unity.sdk.Provider
 
             return await promise.Task;
         }
+        
     }
 }
