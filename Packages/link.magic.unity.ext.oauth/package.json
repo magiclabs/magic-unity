@@ -1,0 +1,15 @@
+{
+  "name": "link.magic.unity.ext.oauth",
+  "displayName": "Magic Link Unity OAuth Extension",
+  "description": "The Magic Link Unity SDK provides access to Magic Key Management System and interact with Blockchain.",
+  "version": "0.0.1",
+  "unity": "2021.3",
+  "author": {
+    "name": "Magic Labs Inc."
+  },
+  "dependencies": {
+    "link.magic.unity.sdk": "2.0.0",
+    "com.unity.services.authentication": "3.2.0"
+  }
+}
+

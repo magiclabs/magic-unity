@@ -1,0 +1,16 @@
+{
+  "name": "Magic",
+  "rootNamespace": "",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "precompiledReferences": [
+    "Newtonsoft.Json.dll"
+  ],
+  "overrideReferences": true,
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
