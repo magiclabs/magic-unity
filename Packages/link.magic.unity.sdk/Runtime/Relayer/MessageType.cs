@@ -1,4 +1,4 @@
-namespace Magic.Relayer
+namespace MagicSDK.Relayer
 {
     public enum OutboundMessageType
     {

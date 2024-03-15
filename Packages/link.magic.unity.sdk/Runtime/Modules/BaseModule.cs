@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Magic.Provider;
+using MagicSDK.Provider;
 
-namespace Magic.Modules
+namespace MagicSDK.Modules
 {
     public class BaseModule
     {
@@ -12,7 +12,7 @@ namespace Magic.Modules
             Provider = provider;
         }
 
-        internal async Task<TResult> SendToProviderWithConfig<TConfig, TResult>(TConfig config, string methodName)
+        protected async Task<TResult> SendToProviderWithConfig<TConfig, TResult>(TConfig config, string methodName)
         {
             TConfig[] paramList = { config };
             var request = new MagicRpcRequest<TConfig>(methodName, paramList);

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Magic.Relayer;
+using MagicSDK.Relayer;
 using Nethereum.JsonRpc.Client;
 using Nethereum.JsonRpc.Client.RpcMessages;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace Magic.Provider
+namespace MagicSDK.Provider
 
 {
     public class RpcProvider : ClientBase

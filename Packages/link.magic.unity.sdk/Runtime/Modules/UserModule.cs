@@ -1,9 +1,9 @@
 using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Magic.Provider;
+using MagicSDK.Provider;
 
-namespace Magic.Modules
+namespace MagicSDK.Modules
 {
     public sealed class UserModule : BaseModule
     {

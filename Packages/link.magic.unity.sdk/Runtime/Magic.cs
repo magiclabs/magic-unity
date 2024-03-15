@@ -1,8 +1,8 @@
-using Magic.Modules;
-using Magic.Provider;
-using Magic.Relayer;
+using MagicSDK.Modules;
+using MagicSDK.Provider;
+using MagicSDK.Relayer;
 
-namespace Magic
+namespace MagicSDK
 {
     public sealed class Magic
     {

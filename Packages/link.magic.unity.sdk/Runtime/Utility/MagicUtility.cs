@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace Magic.Utility
+namespace MagicSDK.Utility
 {
     internal class MagicUtility
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Magic.Provider;
+using MagicSDK.Provider;
 using UnityEngine;
 
-namespace Magic.Relayer
+namespace MagicSDK.Relayer
 {
     public class WebviewController
     {

@@ -8,7 +8,15 @@
     "name": "Magic Labs Inc."
   },
   "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.2.1"
-  }
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
+    "com.unity.services.authentication": "3.2.0"
+  },
+  "samples": [
+    {
+      "displayName": "Magic Auth",
+      "description": "Magic Authentication example",
+      "path": "Samples~/MagicAuth"
+    }
+  ]
 }
 

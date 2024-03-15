@@ -1,7 +1,7 @@
 using Nethereum.JsonRpc.Client.RpcMessages;
 using Newtonsoft.Json;
 
-namespace Magic.Provider
+namespace MagicSDK.Provider
 {
     [JsonObject]
     internal class RelayerRequestNethereum

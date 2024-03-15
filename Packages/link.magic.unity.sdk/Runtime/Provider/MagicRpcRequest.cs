@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Magic.Provider
+namespace MagicSDK.Provider
 {
     [Serializable]
     public class MagicRpcRequest<T>

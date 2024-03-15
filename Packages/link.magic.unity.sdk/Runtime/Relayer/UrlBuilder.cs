@@ -1,15 +1,17 @@
 using System;
 using JetBrains.Annotations;
-using Magic.Utility;
+using MagicSDK.Utility;
+using MagicSDK;
 using UnityEngine;
 
-namespace Magic.Relayer
+namespace MagicSDK.Relayer
 {
     public class UrlBuilder
-    {
-        internal static UrlBuilder Instance;
+    { 
+        public static UrlBuilder Instance;
 
         public static readonly string Host = "https://box.magic.link";
+        // public static readonly string Host = "http://localhost:3016";
         
         internal readonly string EncodedParams;
         public string apikey;

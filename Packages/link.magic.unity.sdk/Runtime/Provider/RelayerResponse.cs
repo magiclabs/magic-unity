@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Magic.Provider
+namespace MagicSDK.Provider
 {
     [Serializable]
     public class RelayerResponse<T>

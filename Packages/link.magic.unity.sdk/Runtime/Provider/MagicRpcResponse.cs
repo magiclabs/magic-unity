@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Magic.Provider
+namespace MagicSDK.Provider
 {
     [Serializable]
     internal class MagicRpcResponse<T>
