@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.unity.services.authentication": "3.2.0"
+    "com.nethereum.unity": "4.19.2"
   },
   "samples": [
     {
