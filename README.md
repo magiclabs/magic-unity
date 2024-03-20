@@ -25,6 +25,11 @@ openupm add com.nethereum.unity
 openupm add link.magic.unity.sdk
 ```
 
+Add webview dependency to `manifest.json`
+```json
+    "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
+```
+
 ## Quick Start
 
 Try import Sample in Package Manager `prefabs/MagicExample.prefab` to get a quick start!
