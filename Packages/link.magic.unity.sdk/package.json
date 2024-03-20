@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "com.unity.nuget.newtonsoft-json": "3.2.1",
-    "com.nethereum.unity": "4.19.2"
+    "com.nethereum.unity": "4.19.2",
+    "net.gree.unity-webview": "1.0.0"
   },
   "samples": [
     {

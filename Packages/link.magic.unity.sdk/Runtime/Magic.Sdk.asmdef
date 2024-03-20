@@ -1,7 +1,9 @@
 {
     "name": "Magic.Sdk",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "unity-webview"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
