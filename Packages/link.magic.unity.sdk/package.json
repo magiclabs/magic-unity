@@ -13,9 +13,9 @@
   },
   "samples": [
     {
-      "displayName": "Magic Auth",
+      "displayName": "Magic Example",
       "description": "Magic Authentication example",
-      "path": "Samples~/MagicAuth"
+      "path": "Samples~/MagicExample"
     }
   ]
 }

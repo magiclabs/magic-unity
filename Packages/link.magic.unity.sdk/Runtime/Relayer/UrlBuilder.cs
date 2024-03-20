@@ -11,7 +11,6 @@ namespace MagicSDK.Relayer
         public static UrlBuilder Instance;
 
         public static readonly string Host = "https://box.magic.link";
-        // public static readonly string Host = "http://localhost:3016";
         
         internal readonly string EncodedParams;
         public string apikey;
