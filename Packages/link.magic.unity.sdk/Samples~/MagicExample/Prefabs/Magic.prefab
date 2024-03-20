@@ -347,10 +347,10 @@ PrefabInstance:
     - target: {fileID: 4858241708811828613, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3767128607568156660}
+      objectReference: {fileID: 5504459041055483082}
     - target: {fileID: 4858241708811828613, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4858241708811828613, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -358,7 +358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4858241708811828613, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MagicUnityButton, Assembly-CSharp
+      value: MagicAuthButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4858241708811828613, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -370,14 +370,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4858241708811828611, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3767128607568156660}
+      addedObject: {fileID: 5504459041055483082}
   m_SourcePrefab: {fileID: 100100000, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
 --- !u!1 &6559084729764541490 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4858241708811828611, guid: 3dc7ca30e6e7d284cb5984eba9f2ce5a, type: 3}
   m_PrefabInstance: {fileID: 1760201393890314673}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3767128607568156660
+--- !u!114 &5504459041055483082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6559084729764541490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8054969e64c74800a92d6e969e69ead9, type: 3}
+  m_Script: {fileID: 11500000, guid: 47bf3cdb11654a30aa43ff69875ec6a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   result: {fileID: 0}
