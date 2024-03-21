@@ -1,0 +1,19 @@
+{
+  "name": "Magic.Ext.OAuth",
+  "rootNamespace": "",
+  "references": [
+    "Magic.Sdk",
+    "Unity.Services.Authentication"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "link.magic.unity.sdk"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
