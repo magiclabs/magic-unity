@@ -1,10 +1,11 @@
 using Nethereum.JsonRpc.Client.RpcMessages;
 using Newtonsoft.Json;
 
+// This class is specifically designed to manage RpcRequestMessage objects, which does not support generic type inference for type T.
 namespace MagicSDK.Provider
 {
     [JsonObject]
-    internal class RelayerRequestNethereum
+    internal class MagicRelayerRequest
     {
         [JsonProperty("msgType", Required = Required.Default)]
         internal string MsgType;
@@ -12,7 +13,7 @@ namespace MagicSDK.Provider
         [JsonProperty("payload", Required = Required.Default)]
         internal RpcRequestMessage Payload;
 
-        internal RelayerRequestNethereum(string msgType, RpcRequestMessage payload)
+        internal MagicRelayerRequest(string msgType, RpcRequestMessage payload)
         {
             MsgType = msgType;
             Payload = payload;

@@ -16,7 +16,7 @@ namespace MagicSDK
         //Constructor
         public Magic(string apikey, EthNetwork network = EthNetwork.Mainnet, string locale = "en-US")
         {
-            var urlBuilder = new UrlBuilder(apikey, network, locale);
+            var urlBuilder = new UrlBuilder(apikey, network, locale);       
             UrlBuilder.Instance = urlBuilder;
             
             Provider = new RpcProvider(urlBuilder);
@@ -39,5 +39,6 @@ namespace MagicSDK
     {
         Mainnet,
         Goerli,
+        Sepolia
     }
 }

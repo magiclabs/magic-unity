@@ -87,7 +87,7 @@ namespace MagicSDK.Relayer
             {
                 var message = _queue.Dequeue();
 
-                Debug.Log($"MagicUnity Send Message to Relayer: {message}");
+                // Debug.Log($"MagicUnity Send Message to Relayer: {message}");
 
                 _webViewObject.EvaluateJS(
                     $"window.dispatchEvent(new MessageEvent('message', {{ 'data': {message} }}));");

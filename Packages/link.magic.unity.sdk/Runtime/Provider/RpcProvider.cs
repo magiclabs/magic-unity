@@ -29,10 +29,6 @@ namespace MagicSDK.Provider
 
         private string _generateBoxUrl(UrlBuilder urlBuilder)
         {
-            // encode options params to base 64
-            var optionsJsonString = JsonUtility.ToJson(urlBuilder);
-            Debug.Log(optionsJsonString);
-
             var url = $"{UrlBuilder.Host}/send/?params={urlBuilder.EncodedParams}";
 
             return url;
@@ -42,19 +38,17 @@ namespace MagicSDK.Provider
         protected override async Task<RpcResponseMessage> SendAsync(RpcRequestMessage request, string route = null)
         {
             var msgType = $"{nameof(OutboundMessageType.MAGIC_HANDLE_REQUEST)}-{UrlBuilder.Instance.EncodedParams}";
-            var relayerRequest = new RelayerRequestNethereum(msgType, request);
+            var relayerRequest = new MagicRelayerRequest(msgType, request);
             var requestMsg = JsonConvert.SerializeObject(relayerRequest, _jsonSerializerSettings);
-            Debug.Log($" MagicUnity 1{requestMsg}");
 
             var promise = new TaskCompletionSource<RpcResponseMessage>();
 
             // handle Response in the callback, so that webview is type free
             _relayer.Enqueue(requestMsg, (int)request.Id, responseMsg =>
             {
-                var reader = new JsonTextReader(new StringReader(responseMsg));
-                var serializer = JsonSerializer.Create(_jsonSerializerSettings);
-                var relayerResponseNethereum = serializer.Deserialize<RelayerResponseNethereum>(reader);
-                var result = relayerResponseNethereum?.Response;
+                var relayerResponseNethereum = JsonConvert.DeserializeObject<RelayerResponseForNethereum>(responseMsg);
+                
+                var result = relayerResponseNethereum?.response;
                 return promise.TrySetResult(result);
             });
 
@@ -74,6 +68,7 @@ namespace MagicSDK.Provider
             return await promise.Task;
         }
 
+        // This function is exclusively for Magic related API, as it supports generic types for deserialization
         protected internal async Task<TResult> MagicSendAsync<TParams, TResult>(MagicRpcRequest<TParams> magicRequest)
         {
             // Wrap with Relayer params and send to relayer
