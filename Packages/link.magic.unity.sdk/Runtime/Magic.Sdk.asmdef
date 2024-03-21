@@ -1,0 +1,19 @@
+{
+    "name": "Magic.Sdk",
+    "rootNamespace": "",
+    "references": [
+        "unity-webview"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll",
+        "Nethereum.JsonRpc.Client.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

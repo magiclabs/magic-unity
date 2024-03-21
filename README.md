@@ -15,11 +15,24 @@ WebGL is currently not supported, but you may use [magic-js](https://github.com/
 
 ## Installation
 
-Install the package by double clicking the `MagicUnity.unitypackage`, or drag it into your project
+```shell
+npm i -g openupm
+```
+
+Install Nethereum Unity via openUPM
+```shell
+openupm add com.nethereum.unity
+openupm add link.magic.unity.sdk
+```
+
+Add webview dependency to `manifest.json`
+```json
+    "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
+```
 
 ## Quick Start
 
-Try the prefab in `prefabs/Magic Example.prefab` to get a quick start!
+Try import Sample in Package Manager `prefabs/MagicExample.prefab` to get a quick start!
 
 ### Instantiate Magic
 
