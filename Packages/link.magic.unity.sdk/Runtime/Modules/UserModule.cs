@@ -45,6 +45,11 @@ namespace MagicSDK.Modules
         {
             return await SendToProvider<bool>(nameof(UserMethod.magic_auth_logout));
         }
+
+        public async Task<bool> RevealPrivateKey()
+        {
+            return await SendToProvider<bool>(nameof(UserMethod.magic_reveal_key));
+        }
     }
 
     /// <summary>
@@ -94,7 +99,8 @@ namespace MagicSDK.Modules
         magic_auth_get_metadata,
         magic_auth_is_logged_in,
         magic_auth_update_email,
-        magic_auth_logout
+        magic_auth_logout,
+        magic_reveal_key,
     }
 
     [Serializable]
