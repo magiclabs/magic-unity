@@ -17,12 +17,17 @@ namespace MagicSDK.Provider
         private readonly JsonSerializerSettings _jsonSerializerSettings =
             DefaultJsonSerializerSettingsFactory.BuildDefaultJsonSerializerSettings();
 
-        private readonly WebviewController _relayer = new();
+        private readonly WebviewController _relayer;
 
-        protected internal RpcProvider(UrlBuilder urlBuilder)
+        protected internal RpcProvider(UrlBuilder urlBuilder, GameObject canvas)
         {
             var url = _generateBoxUrl(urlBuilder);
 
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+            _relayer = new(canvas);
+#else
+            _relayer = new();
+#endif 
             // init relayer
             _relayer.Load(url);
         }
