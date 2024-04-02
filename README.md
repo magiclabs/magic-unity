@@ -52,6 +52,22 @@ public class MagicUnity : MonoBehaviour
 }
 ```
 
+For macOS editor support, you'll need to pass an additional parameter `macCanvas` to properly render Magic components. The object you pass in should be the name of your app's primary canvas.
+
+```c#
+public class MagicUnity : MonoBehaviour
+{
+    // Attach this script when you start the canvas 
+    void Start()
+    {
+        Magic magic = new Magic("YOUR_PUBLISHABLE_KEY", macCanvas: GameObject.Find("Magic Example 1"));
+        
+        // Append the instance here, so that it can be shared across the project
+        Magic.Instance = magic;
+    }
+}
+```
+
 ### User Authentication
 
 ```c#
