@@ -19,12 +19,12 @@ namespace MagicSDK.Provider
 
         private readonly WebviewController _relayer;
 
-        protected internal RpcProvider(UrlBuilder urlBuilder, GameObject canvas)
+        protected internal RpcProvider(UrlBuilder urlBuilder, GameObject macCanvas)
         {
             var url = _generateBoxUrl(urlBuilder);
 
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            _relayer = new(canvas);
+            _relayer = new(macCanvas);
 #else
             _relayer = new();
 #endif 
@@ -52,7 +52,7 @@ namespace MagicSDK.Provider
             _relayer.Enqueue(requestMsg, (int)request.Id, responseMsg =>
             {
                 var relayerResponseNethereum = JsonConvert.DeserializeObject<RelayerResponseForNethereum>(responseMsg);
-                
+
                 var result = relayerResponseNethereum?.response;
                 return promise.TrySetResult(result);
             });
@@ -64,7 +64,7 @@ namespace MagicSDK.Provider
         {
             var promise = new TaskCompletionSource<RpcResponseMessage[]>();
             List<RpcResponseMessage> results = new List<RpcResponseMessage>();
-        foreach (var rpcRequestMessage in magicRequestList)
+            foreach (var rpcRequestMessage in magicRequestList)
             {
                 RpcResponseMessage res = await SendAsync(rpcRequestMessage);
                 results.Add(res);

@@ -239,7 +239,7 @@ namespace MagicSDK.Relayer
             {
                 var message = _queue.Dequeue();
 
-                Debug.Log($"MagicUnity Send Message to Relayer: {message}");
+                // Debug.Log($"MagicUnity Send Message to Relayer: {message}");
                 ExecuteJavaScript($"window.dispatchEvent(new MessageEvent('message', {{ 'data': {message} }}));");
                 _dequeue();
             }

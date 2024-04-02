@@ -15,12 +15,12 @@ namespace MagicSDK
         public readonly UserModule User;
 
         //Constructor
-        public Magic(string apikey, EthNetwork network = EthNetwork.Mainnet, string locale = "en-US", GameObject canvas = null)
+        public Magic(string apikey, EthNetwork network = EthNetwork.Mainnet, string locale = "en-US", GameObject macCanvas = null)
         {
             var urlBuilder = new UrlBuilder(apikey, network, locale);
             UrlBuilder.Instance = urlBuilder;
 
-            Provider = new RpcProvider(urlBuilder, canvas);
+            Provider = new RpcProvider(urlBuilder, macCanvas);
             User = new UserModule(Provider);
             Auth = new AuthModule(Provider);
         }

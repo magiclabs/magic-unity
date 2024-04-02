@@ -10,7 +10,7 @@ public class MagicUnity : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Magic magic = new Magic("YOUR_PUBLISHABLE_KEY", canvas: GameObject.Find("Magic Example 1"));
+        Magic magic = new Magic("YOUR_PUBLISHABLE_KEY", macCanvas: GameObject.Find("Magic Example 1"));
         Magic.Instance = magic;
     }
 
