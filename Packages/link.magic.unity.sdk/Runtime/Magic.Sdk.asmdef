@@ -2,7 +2,8 @@
     "name": "Magic.Sdk",
     "rootNamespace": "",
     "references": [
-        "unity-webview"
+        "unity-webview",
+        "VoltstroStudios.UnityWebBrowser"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,7 +11,8 @@
     "overrideReferences": true,
     "precompiledReferences": [
         "Newtonsoft.Json.dll",
-        "Nethereum.JsonRpc.Client.dll"
+        "Nethereum.JsonRpc.Client.dll",
+        "VoltstroStudios.UnityWebBrowser.Shared.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],
