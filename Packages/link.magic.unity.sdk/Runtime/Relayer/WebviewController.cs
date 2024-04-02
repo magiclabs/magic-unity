@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using MagicSDK.Provider;
-using UnityEngine;
 using VoltstroStudios.UnityWebBrowser;
 using VoltstroStudios.UnityWebBrowser.Core;
 using VoltstroStudios.UnityWebBrowser.Shared.Core;

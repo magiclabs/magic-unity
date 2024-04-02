@@ -25,12 +25,12 @@ namespace MagicSDK
             Auth = new AuthModule(Provider);
         }
 
-        public Magic(string apikey, CustomNodeConfiguration config, string locale = "en-US", GameObject canvas = null)
+        public Magic(string apikey, CustomNodeConfiguration config, string locale = "en-US", GameObject macCanvas = null)
         {
             var urlBuilder = new UrlBuilder(apikey, config, locale);
             UrlBuilder.Instance = urlBuilder;
 
-            Provider = new RpcProvider(urlBuilder, canvas);
+            Provider = new RpcProvider(urlBuilder, macCanvas);
             User = new UserModule(Provider);
             Auth = new AuthModule(Provider);
         }
