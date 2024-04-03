@@ -1,33 +1,89 @@
-# Magic Unity
+# Magic Unity SDK
 
 Magic empowers developers to protect their users via an innovative, passwordless authentication flow without the UX compromises that burden traditional OAuth implementations. 
 
 [Documentation](https://magic.link/docs/login-methods/email/integration/unity)
 
+## ⚠️ Important Changes in Version 3.0.0 ⚠️
+
+Starting with version 3.0, the Magic Unity SDK has transitioned to using the Unity Package Manager for dependency management. This change offers a more convenient and robust method for managing dependencies.
+
+Old Implementation (Not Supported) ❌
+```csharp
+using link.magic.unity.sdk
+```
+
+New Implementation (Since Version 3.0)
+```csharp
+using MagicSDK
+```
+
 ## ⚠️ Removal of `LoginWithMagicLink()` ⚠️
 As of `v2.0.0`, passcodes (ie. `LoginWithSMS()`, `LoginWithEmailOTP()`) are replacing Magic Links (ie. `LoginWithMagicLink()`) for all of our Mobile SDKs⁠. [Learn more](https://magic.link/docs/auth/login-methods/email/email-link-update-march-2023)
 
 
-## Supported Platform
-It's recommended to apply this plugin in Unity 2021.3.3f1 or newer. Developers may build 2d Unity mobile Apps both in iOS and Android. 
+## Platform Compatibility
+For optimal performance, we recommend using this plugin with Unity 2021.3.3f1 or later.
 
-WebGL is currently not supported, but you may use [magic-js](https://github.com/magiclabs/magic-js) in a JS context to enable passwordless authentication flow.
+| Platform | Support? |
+|----------|----------|
+| iOS      | ✅        |
+| Android  | ✅        |
+| MacOS    | ✅        |
+| Editor   | ✅        |
+| Windows  | ✅        |
+| WebGL    | ❌        |
+
+
+Note: WebGL is not currently supported. For web-based projects, consider using [magic-js](https://github.com/magiclabs/magic-js) for passwordless authentication within a JavaScript environment.
 
 ## Installation
 
+Install the necessary packages using openUPM:
 ```shell
 npm i -g openupm
-```
-
-Install Nethereum Unity via openUPM
-```shell
 openupm add com.nethereum.unity
 openupm add link.magic.unity.sdk
 ```
 
-Add webview dependency to `manifest.json`
+Manually include the webview dependency in your manifest.json:
+
 ```json
     "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
+```
+
+Make sure you have added [Voltstro UPM Registry](https://github.com/Voltstro/VoltstroUPM#setup)is added to your project. Your final manifest.json should resemble the following:
+```json
+{
+  "dependencies": {
+    "link.magic.unity.sdk": "3.1.1",
+    "com.nethereum.unity": "4.19.2",
+    "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
+    "dev.voltstro.unitywebbrowser": "2.1.1",
+    "dev.voltstro.unitywebbrowser.communication.pipes": "1.0.1",
+    "dev.voltstro.unitywebbrowser.engine.cef": "2.1.0-121.3.13",
+    "dev.voltstro.unitywebbrowser.engine.cef.win.x64": "2.1.0-121.3.13",
+    "dev.voltstro.unitywebbrowser.unix-support": "1.0.1"
+  },
+  "scopedRegistries": [
+    {
+      "name": "Voltstro UPM",
+      "url": "https://upm-pkgs.voltstro.dev",
+      "scopes": [
+        "dev.voltstro",
+        "org.nuget"
+      ]
+    },
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.nethereum.unity",
+        "link.magic.unity.sdk"
+      ]
+    }
+  ]
+}
 ```
 
 ## Quick Start
@@ -97,11 +153,6 @@ and their github repo about [RPC payloads](https://github.com/Nethereum/Nethereu
             { To = accounts[0], Value = new HexBigInteger(10), From = accounts[0]};
         var hash = await transaction.SendRequestAsync(transactionInput);
 ```
-
-### DLL not loaded Error
-![image](https://user-images.githubusercontent.com/33166884/175986685-6423ffd8-51e2-4251-833b-bdf78fa35fa9.png)
-
-If you find this after loading the package. Please refer to the solution here in our [doc](https://magic.link/docs/login-methods/email/integration/unity#newton-json-version-error) for the incompatible version error
 
 ### Support
 More blockchain support will be coming soon. Feel free to send your requests and issues to `support@magic.link` or via our helpdesk. Happy coding!
