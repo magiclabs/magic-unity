@@ -29,6 +29,7 @@ namespace MagicSDK.Relayer
         // Windows and Non-Windows have different Browser implementations
 #if !UNITY_EDITOR_WIN || !UNITY_STANDALONE_WIN
         // NON-WINDOWS
+        private GameObject macCanvas;
 
         private readonly WebViewObject _webViewObject;
 
@@ -36,6 +37,8 @@ namespace MagicSDK.Relayer
         {
             // instantiate webview 
             _webViewObject = new GameObject("WebViewObject").AddComponent<WebViewObject>();
+            macCanvas = canvas;
+            macCanvas.transform.localScale = Vector3.zero;
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
             _webViewObject.canvas = canvas;
             if (!canvas)
@@ -62,6 +65,7 @@ namespace MagicSDK.Relayer
 
         private void ShowBrowser()
         {
+            macCanvas.transform.localScale = Vector3.one;
             _webViewObject.SetVisibility(true);
         }
 
