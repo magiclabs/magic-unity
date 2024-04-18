@@ -37,14 +37,19 @@ namespace MagicSDK.Relayer
         {
             // instantiate webview 
             _webViewObject = new GameObject("WebViewObject").AddComponent<WebViewObject>();
-            macCanvas = canvas;
-            macCanvas.transform.localScale = Vector3.zero;
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-            _webViewObject.canvas = canvas;
+            macCanvas = new GameObject();
+            macCanvas.AddComponent<Canvas>();
+            // macCanvas = canvasContainer.GetComponent<Canvas>();
+            macCanvas.transform.localScale = Vector3.zero;
+
+            _webViewObject.canvas = macCanvas;
             if (!canvas)
             {
                 Debug.LogWarning("Magic Canvas is required for OSX and Editor support");
             }
+
+            
 #endif
             _webViewObject.Init(
                 cb: _cb,
