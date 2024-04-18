@@ -40,7 +40,6 @@ namespace MagicSDK.Relayer
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
             macCanvas = new GameObject();
             macCanvas.AddComponent<Canvas>();
-            // macCanvas = canvasContainer.GetComponent<Canvas>();
             macCanvas.transform.localScale = Vector3.zero;
 
             _webViewObject.canvas = macCanvas;
