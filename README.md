@@ -39,20 +39,8 @@ Note: WebGL is not currently supported. For web-based projects, consider using [
 
 ## Installation
 
-Install the necessary packages using openUPM:
-```shell
-npm i -g openupm
-openupm add com.nethereum.unity
-openupm add link.magic.unity.sdk
-```
+There are a number of required packages that need to be added. We recommend just adding them directly to the to the `Packages/manfifest.json`. Your final `manifest.json` should resemble the following:
 
-Manually include the webview dependency in your manifest.json:
-
-```json
-    "net.gree.unity-webview": "https://github.com/gree/unity-webview.git?path=/dist/package",
-```
-
-Make sure you have added [Voltstro UPM Registry](https://github.com/Voltstro/VoltstroUPM#setup)is added to your project. Your final manifest.json should resemble the following:
 ```json
 {
   "dependencies": {
@@ -71,7 +59,8 @@ Make sure you have added [Voltstro UPM Registry](https://github.com/Voltstro/Vol
       "url": "https://upm-pkgs.voltstro.dev",
       "scopes": [
         "dev.voltstro",
-        "org.nuget"
+        "org.nuget",
+        "com.cysharp.unitask"
       ]
     },
     {
@@ -85,6 +74,8 @@ Make sure you have added [Voltstro UPM Registry](https://github.com/Voltstro/Vol
   ]
 }
 ```
+
+You will likely have many other references in your `dependencies` node and you may have other `scopedRegistries` as well, but these are the ones that are required to use the Magic Unity SDK.
 
 ## Quick Start
 
